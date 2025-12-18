@@ -1,8 +1,11 @@
 
-// Use combined named and type imports for better module resolution compatibility in Vite/TS
-import { initializeApp, type FirebaseApp } from 'firebase/app';
-import { getAuth, type Auth } from 'firebase/auth';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+// Fix: Separated value and type imports to resolve module member resolution issues in older TypeScript versions or specific build environments.
+import { initializeApp } from 'firebase/app';
+import type { FirebaseApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import type { Auth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import type { Firestore } from 'firebase/firestore';
 
 /**
  * 嘗試從環境變數解析 Firebase 配置
