@@ -22,16 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # 移除 cache: 'npm' 以免因為找不到 package-lock.json 而報錯
 
       - name: Install dependencies
-        run: npm ci
+        # 如果沒有 package-lock.json，npm ci 會失敗，這裡改用 npm install
+        run: npm install
 
       - name: Build
         run: npm run build
         env:
           API_KEY: ${{ secrets.API_KEY }}
-          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
