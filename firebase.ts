@@ -1,9 +1,8 @@
-import { initializeApp } from 'firebase/app';
-import type { FirebaseApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import type { Auth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import type { Firestore } from 'firebase/firestore';
+
+// Use combined named and type imports for better module resolution compatibility in Vite/TS
+import { initializeApp, type FirebaseApp } from 'firebase/app';
+import { getAuth, type Auth } from 'firebase/auth';
+import { getFirestore, type Firestore } from 'firebase/firestore';
 
 /**
  * 嘗試從環境變數解析 Firebase 配置
@@ -28,7 +27,7 @@ let db: Firestore | null = null;
 
 if (firebaseConfig && firebaseConfig.apiKey) {
   try {
-    // 初始化 Firebase v9 服務
+    // 初始化 Firebase v9+ 模組化服務
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app);
